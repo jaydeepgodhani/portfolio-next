@@ -1,15 +1,110 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "Quattro";
+  src: url("/fonts/quattro.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Recoleta";
+  src: url("/fonts/recoleta-bold.woff2") format("woff2");
+}
+
+:root {
+  --color-bg: 253 253 253;
+  --color-primary: 40 37 36;
+  --color-secondary: 74 69 69;
+  --color-link: 255 215 0;
+  --color-link-contrast: 145 0 248;
+  --color-disable: 35 35 35;
+  --color-code-bg: 240 240 240;
+  --color-quote-bg: 249 250 229;
+  overscroll-behavior: none;
+  overflow: scroll;
+}
+
+:root[class~="dark"] {
+  --color-bg: 40 40 40;
+  --color-primary: 253 253 253;
+  --color-secondary: 211 211 211;
+  --color-link: 145 0 248;
+  --color-link-contrast: 255 215 0;
+  --color-disable: 200 200 200;
+  --color-code-bg: 51 51 51;
+  --color-quote-bg: 57 45 61;
+  overscroll-behavior: none;
+  overflow: scroll;
+}
+
+@theme {
+  --font-sans: "Quattro", sans-serif;
+  --font-body: "Quattro", sans-serif;
+  --font-heading: "Recoleta", sans-serif;
+  /* Colors */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-bg: 253 253 253;
+  --color-primary: 40 37 36;
+  --color-secondary: 74 69 69;
+  --color-link: 255 215 0;
+  --color-link-contrast: 145 0 248;
+  --color-disable: 35 35 35;
+  --color-code-bg: 240 240 240;
+  --color-quote-bg: 249 250 229;
+
+  /* Shadows */
+  --shadow-3xl: 0px 0px 20px -4px var(--color-primary);
+  --shadow-smooth:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+
+  /* Backgrounds */
+  --bg-hr: linear-gradient(
+    to right,
+    var(--color-bg) / 0.75,
+    var(--color-primary),
+    var(--color-bg) / 0.75
+  );
+  --bg-link: linear-gradient(transparent 50%, var(--color-link) 50%);
+
+  /* Other customizations */
+  --backdrop-blur-xs: 7px;
+  --underline-offset-30: -0.5rem;
+
+  /* Animations */
+  @keyframes fadeIn {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1 }
+    100% { opacity: 0 }
+  }
+
+  --animate-fade: fadeIn 0.3s ease-in-out forwards;
+}
+
+@theme dark: {
+  --color-bg: 40 40 40;
+  --color-primary: 253 253 253;
+  --color-secondary: 211 211 211;
+  --color-link: 145 0 248;
+  --color-link-contrast: 255 215 0;
+  --color-disable: 200 200 200;
+  --color-code-bg: 51 51 51;
+  --color-quote-bg: 57 45 61;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +114,70 @@
   }
 }
 
-body {
+/* body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+} */
+
+@layer base {
+
+
+  /* @apply text-primary border-b-link border-b-[3px] hover:border-b-link-contrast; */
+  /* @apply text-primary underline underline-offset-[-0rem] decoration-link-contrast; */
+
+  /* a {
+    color: rgb(var(--color-primary));
+    text-decoration-line: underline;
+    text-underline-offset: -0rem;
+    text-decoration-color: rgb(var(--color-link-contrast));
+    text-decoration-thickness: 2px;
+    text-decoration-skip-ink: none;
+  }
+  a:hover {
+    color: rgb(var(--color-link-contrast));
+  } */
+
+
+  /* a {
+    color: #32557f;
+    text-decoration: none;
+    background:  no-repeat 0 100%;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 2px;
+    transition: background-size .3s ease;
+  }
+
+  a:hover, a:focus {
+    background-size: 100% 2px;
+  } */
+
+
+  a.special {
+    text-decoration: none;
+    box-shadow: inset 0 -1px 0 rgb(var(--color-link)), 0 1px 0 rgb(var(--color-link));
+    transition: box-shadow .5s;
+    color: rgb(var(--color-primary));
+    overflow: hidden;
+  }
+
+  a.special:hover {
+    box-shadow: inset 0 -30px 0 rgb(var(--color-link)), 0 2px 0 rgb(var(--color-link));
+    color: rgb(var(--color-primary));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+  }
+
+}
+
+body * {
+  @apply transition-all duration-500;
+}
+
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
 }
