@@ -1,35 +1,3 @@
-#### Table of contents
-
-1. [Up & Going](#up--going)
-    * [Variable Types](#variable-types)
-    * [Array](#array)
-    * [Function](#function)
-    * [Hoisting](#hoisting)
-    * [Switch](#switch)
-    * [Use Strict](#use-strict)
-    * [Function As Value](#function-as-value)
-    * [Immediately Invoked Function Expression (IIFE)](#immediately-invoked-function-expression-iife)
-    * [Closure](#closure)
-    * [Modules](#modules)
-    * [This](#this)
-    * [Prototypes](#prototypes)
-    * [Polyfilling](#polyfilling)
-    * [Transpiling](#transpiling)
-    * [Non-Javascript](#non-javascript)
-2. [Misc](#misc)
-3. [Scope & Closure](#scope--closure)
-    * [Hiding Variables and Function  ](#hiding-variables-and-function)
-    * [Function As Scope  ](#function-as-scope)
-    * [Anonymous Versus Named](#anonymous-versus-named)
-    * [Let Declaration  ](#let-declaration)
-    * [Hoisting](#hoistings)
-    * [Closure](#closures)
-    * [Singleton Pattern](#singleton-pattern)
-    * [Dynamic Scope](#dynamic-scope)
-4. [This & Object](#this--object)
-5. [Date](#date)
-
-
 ## Up & Going
 
 ### Variable Types

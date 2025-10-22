@@ -34,8 +34,6 @@ const BlogPost = ({ sublink, link }) => {
   useLayoutEffect(() => {
     const fetchFileContent = async () => {
       const path = `/${sublink}/${link}.md`;
-      console.log('path... ', path);
-
       const response = await fetch(path);
       if (response.ok) {
         const text = await response.text();
@@ -76,7 +74,7 @@ const BlogPost = ({ sublink, link }) => {
           ),
           code: (obj) => <CodeBlock obj={obj} codeStyle={codeStyle} />,
           a: ({ href, children }) => (
-            <a href={href} target="_blank" rel="noopener noreferrer">
+            <a href={href} target="_blank" rel="noopener noreferrer" style={{ fontStyle: 'italic', textDecoration: 'underline' }}>
               {children}
             </a>
           ),

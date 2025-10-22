@@ -1,4 +1,4 @@
-import BlogPost from "@/app/typography/BlogPost";
+import BlogPost from "../../typography/BlogPost";
 
 const Page= async({ params }) => {
   const { slug } = await params;
