@@ -1,10 +1,11 @@
+"use client";
+
 import { useEffect, useLayoutEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { useParams } from "react-router-dom";
 import remarkGfm from "remark-gfm";
-import NoMatch from "../NoMatch";
 import materialDark from "../helpers/material-dark";
 import materialLight from "../helpers/material-light";
+import NoMatch from "../not-found";
 // import { a11yOneLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { DARK, isPostAvailable } from "../helpers/utilities";
 import CodeBlock from "./CodeBlock";
@@ -13,10 +14,9 @@ import Para from "./Para";
 
 const commonClassName = "text-secondary animate-fade";
 
-const BlogPost = ({ sublink }) => {
+const BlogPost = ({ sublink, link }) => {
 
   const [codeStyle, setCodeStyle] = useState(localStorage.theme === 'dark' ? materialDark : materialLight);
-  const { slug } = useParams();
   const [content, setContent] = useState(null);
 
   useEffect(() => {
@@ -33,7 +33,9 @@ const BlogPost = ({ sublink }) => {
 
   useLayoutEffect(() => {
     const fetchFileContent = async () => {
-      const path = `/${sublink}/${slug}.md`;
+      const path = `/${sublink}/${link}.md`;
+      console.log('path... ', path);
+
       const response = await fetch(path);
       if (response.ok) {
         const text = await response.text();
@@ -43,14 +45,14 @@ const BlogPost = ({ sublink }) => {
       }
     };
     fetchFileContent();
-  }, [slug, sublink]);
+  }, [link, sublink]);
 
   window.addEventListener("storage", () => {
     if (localStorage.theme === DARK) setCodeStyle(materialDark);
     else setCodeStyle(materialLight);
   });
 
-  const postAvailable = isPostAvailable(sublink, slug);
+  const postAvailable = isPostAvailable(sublink, link);
 
   if (!postAvailable) return <NoMatch />;
 

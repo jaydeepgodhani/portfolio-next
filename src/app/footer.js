@@ -1,5 +1,41 @@
 import Link from "next/link";
-import { emailSVG, githubSVG, leetcodeSVG, linkedInSVG, twitterSVG } from "./helpers/utilities";
+import {
+  emailSVG,
+  githubSVG,
+  leetcodeSVG,
+  linkedInSVG,
+  twitterSVG,
+} from "./helpers/utilities";
+
+const ExternalLink = ({ hyperlink, children }) => {
+  return (
+    <Link
+      className="mx-3 text-primary"
+      href={hyperlink}
+      target="_blank"
+      replace
+      rel="noopener noreferrer"
+    >
+      {children}
+    </Link>
+  );
+};
+
+const SVG = ({view, svg}) => {
+  return (
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      strokeWidth="0"
+      viewBox={view}
+      height="1em"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d={svg}></path>
+    </svg>
+  );
+}
 
 const Footer = () => {
   // const dotLottieRef = useRef(null);
@@ -43,101 +79,30 @@ const Footer = () => {
         </a>
       </Para> */}
       <div className="flex justify-center mt-16 text-primary text-2xl">
-        <Link
-          href="mailto:jaydeepgodhani16@gmail.com"
-          className="mx-3 text-primary"
-        >
-          <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth="0"
-            role="img"
-            viewBox="0 0 24 24"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d={emailSVG}></path>
-          </svg>
-        </Link>
-        <Link
-          href="https://www.linkedin.com/in/jaydeepgodhani"
-          className="mx-3 text-primary"
-        >
-          <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth="0"
-            viewBox="0 0 448 512"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d={linkedInSVG}></path>
-          </svg>
-        </Link>
-        <Link
-          href="https://www.github.com/in/jaydeepgodhani"
-          className="mx-3 text-primary"
-        >
-          <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth="0"
-            role="img"
-            viewBox="0 0 24 24"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d={githubSVG}></path>
-          </svg>
-        </Link>
-        <Link
-          href="https://www.x.com/jaydeepgodhani"
-          className="mx-3 text-primary"
-        >
-          <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth="0"
-            viewBox="0 0 512 512"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d={twitterSVG}></path>
-          </svg>
-        </Link>
-        <Link
-          href="https://www.leetcode.com/jaydeepgodhani"
-          className="mx-3 text-primary"
-        >
-          <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth="0"
-            role="img"
-            viewBox="0 0 24 24"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d={leetcodeSVG}></path>
-          </svg>
-        </Link>
+        <ExternalLink hyperlink="mailto:jaydeepgodhani16@gmail.com">
+          <SVG view="0 0 24 24" svg={emailSVG} />
+        </ExternalLink>
+        <ExternalLink hyperlink="https://www.linkedin.com/in/jaydeepgodhani">
+          <SVG view="0 0 448 512" svg={linkedInSVG} />
+        </ExternalLink>
+        <ExternalLink hyperlink="https://www.github.com/in/jaydeepgodhani">
+          <SVG view="0 0 24 24" svg={githubSVG} />
+        </ExternalLink>
+        <ExternalLink hyperlink="https://www.x.com/jaydeepgodhani">
+          <SVG view="0 0 512 512" svg={twitterSVG} />
+        </ExternalLink>
+        <ExternalLink hyperlink="https://www.leetcode.com/jaydeepgodhani">
+          <SVG view="0 0 24 24" svg={leetcodeSVG} />
+        </ExternalLink>
       </div>
       <div className="flex justify-center my-8 text-primary">
         <Link className="mx-3 text-primary" href="https://godhani.in">
           © Jaydeep Godhani
         </Link>
         |
-        <Link
-          href="https://creativecommons.org/licenses/by-nc/4.0/"
-          className="mx-3 text-primary"
-        >
+        <ExternalLink hyperlink="https://creativecommons.org/licenses/by-nc/4.0/">
           CC BY-NC 4.0
-        </Link>
+        </ExternalLink>
       </div>
       {/* <div className="flex justify-center mt-16 text-primary transition-all duration-1000 text-xs">
         <div

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const KnowledgeDocsList = ({ content }) => {
   return (
@@ -9,7 +9,7 @@ const KnowledgeDocsList = ({ content }) => {
             {"•"}&emsp;
           </span>
           <Link
-            to={`/knowledge/${obj.link}`}
+            href={`/knowledge/${obj.link}`}
             className="shadow-none hover:shadow-none bg-quote-bg block text-primary transition-all w-auto"
           >
             {obj.title}
