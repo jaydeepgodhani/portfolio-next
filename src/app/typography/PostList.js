@@ -56,7 +56,7 @@ const PostList = ({ content }) => {
                       <div>
                         <Link
                           href={`/posts/${obj.link}`}
-                          className="shadow-none hover:shadow-none block mb-2 text-primary transition-all"
+                          className="shadow-none hover:shadow-none block mb-2 text-primary"
                         >
                           {obj.title}
                         </Link>
