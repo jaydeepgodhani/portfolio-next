@@ -3,13 +3,13 @@ import { knowledgeDocs, metadata } from "./metadata";
 const weekday = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
 
 const dark = () => {
-  document.documentElement.classList.add(DARK);
+  document.documentElement.classList.toggle(DARK);
   localStorage.theme = DARK;
   window.dispatchEvent(new Event("storage"));
 };
 
 const light = () => {
-  document.documentElement.classList.remove(DARK);
+  document.documentElement.classList.toggle(DARK);
   localStorage.theme = LIGHT;
   window.dispatchEvent(new Event("storage"));
 };

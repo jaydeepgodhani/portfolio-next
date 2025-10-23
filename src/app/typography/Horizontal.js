@@ -1,7 +1,9 @@
 const Horizontal = () => {
   return (
-    <hr className='h-[2px] bg-hr border-[0px] my-8'/>
-  )
-}
+    <hr
+      className="h-[2px] bg-[image:var(--bg-hr)] border-0 my-8"
+    />
+  );
+};
 
-export default Horizontal
+export default Horizontal;

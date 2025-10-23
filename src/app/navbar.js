@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { DARK, LIGHT, showTime, themeSwitcher } from "./helpers/utilities";
 
 const Navbar = () => {
   const [time, setTime] = useState(showTime());
-
+  const pathName = usePathname();
   const toggleTheme = () => {
     themeSwitcher(localStorage.theme === DARK ? LIGHT : DARK);
   };
@@ -39,9 +40,9 @@ const Navbar = () => {
                 <li className="mx-4">
                   <Link
                     href="/projects"
-                    // className={({ isActive }) =>
-                    //   isActive ? "text-primary" : "special"
-                    // }
+                    className={
+                      pathName.endsWith("projects") ? "text-primary" : "special"
+                    }
                   >
                     Projects
                   </Link>
@@ -49,9 +50,9 @@ const Navbar = () => {
                 <li className="mx-4">
                   <Link
                     href="/winnings"
-                    // className={({ isActive }) =>
-                    //   isActive ? "text-primary" : "special"
-                    // }
+                    className={
+                      pathName.endsWith("winnings") ? "text-primary" : "special"
+                    }
                   >
                     Winnings
                   </Link>
@@ -59,9 +60,9 @@ const Navbar = () => {
                 <li className="mx-4">
                   <Link
                     href="/posts"
-                    // className={({ isActive }) =>
-                    //   isActive ? "text-primary" : "special"
-                    // }
+                    className={
+                      pathName.endsWith("posts") ? "text-primary" : "special"
+                    }
                   >
                     Posts
                   </Link>
@@ -69,9 +70,11 @@ const Navbar = () => {
                 <li className="mx-4">
                   <Link
                     href="/knowledge"
-                    // className={({ isActive }) =>
-                    //   isActive ? "text-primary" : "special"
-                    // }
+                    className={
+                      pathName.endsWith("knowledge")
+                        ? "text-primary"
+                        : "special"
+                    }
                   >
                     Knowledge
                   </Link>
@@ -87,8 +90,8 @@ const Navbar = () => {
                   <path d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,20.5 L12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 Z"></path>
                 </g>
               </svg> */}
-                    <div className="bg-primary w-3 h-3 relative text-center rotate-[20deg]"></div>
-                    <div className="bg-primary w-3 h-3 absolute text-center rotate-[155deg]"></div>
+                    <div className="bg-[rgb(var(--color-primary))] text-primary w-3 h-3 relative text-center rotate-[20deg]"></div>
+                    <div className="bg-[rgb(var(--color-primary))] w-3 h-3 absolute text-center rotate-[155deg]"></div>
                   </button>
                 </li>
               </div>
