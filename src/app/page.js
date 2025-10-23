@@ -1,21 +1,29 @@
-import { paragraphs, textBlocks } from "./helpers/utilities";
-import Block from "./typography/Block";
-import Heading from "./typography/Heading";
+"use client";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { paragraphs } from "./helpers/utilities";
 import Para from "./typography/Para";
 
-const heading = "👋 I'm Jaydeep Godhani";
+const heading = "I'm Jaydeep Godhani";
 
 export default function Page() {
   return (
-    <main className="animate-fade">
-      <h1 className="font-heading text-6xl py-24 text-primary">{heading}</h1>
-      {paragraphs.aboutme.map((item, id) => (
-        <Para key={id}>{item}</Para>
-      ))}
-      <Heading text={"Experience"} />
-      {textBlocks.experience.map((item, id) => (
-        <Block key={id} header={item[0]} body={item[1]} footer={item[2]} />
-      ))}
-    </main>
+    <LayoutGroup>
+      <AnimatePresence mode="sync">
+        <motion.main
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, delayChildren: 0.2 }}
+          className="mt-12 mb-4"
+        >
+          <h1 className="font-heading text-6xl py-24 text-primary">
+            👋&emsp;{heading}
+          </h1>
+          {paragraphs.aboutme.map((item, id) => (
+            <Para key={id}>{item}</Para>
+          ))}
+        </motion.main>
+      </AnimatePresence>
+    </LayoutGroup>
   );
 }

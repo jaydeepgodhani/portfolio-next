@@ -24,7 +24,7 @@ const Navbar = () => {
         <div></div>
         <div className="2xl:w-1/2 lg:w-3/4 py-[12px] px-4">
           <nav>
-            <ul className="w-full flex flex-col text-xl items-center lg:flex-row">
+            <ul className="w-full flex flex-col text-xl items-center lg:flex-row font-bold">
               <li className="lg:w-[50%] xl:w-[60%] 2xl:w-[50%]">
                 <Link
                   href="/"
@@ -42,16 +42,6 @@ const Navbar = () => {
                     }
                   >
                     Projects
-                  </Link>
-                </li>
-                <li className="mx-4">
-                  <Link
-                    href="/winnings"
-                    className={
-                      pathName.endsWith("winnings") ? "text-primary" : "special"
-                    }
-                  >
-                    Winnings
                   </Link>
                 </li>
                 <li className="mx-4">

@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 // import markdownContent2 from "./assets/posts/001.md?raw";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { metadata } from "../helpers/metadata";
 import { getMapOfTags } from "../helpers/utilities";
+import Heading from "../typography/Heading";
 import PostList from "../typography/PostList";
 
 const tagMap = getMapOfTags(metadata);
@@ -45,25 +47,35 @@ const Page = () => {
   }, [filter]);
 
   return (
-    <div className="animate-fade">
-      <h2 className="font-heading text-2xl py-6 text-primary">Tags</h2>
-      <div className="mb-4 text-sm text-secondary">
-        {Object.keys(tagMap).map((val) => (
-          <span
-            className="relative inline-block text-secondary text-sm cursor-pointer py-1 px-2 mr-4 rounded-md bg-code-bg"
-            key={val}
-            onClick={e => filterTags(val, e)}
-          >
-            <span
-              className="absolute inset-0 rounded-md pointer-events-none"
-              aria-hidden="true"
-            ></span>
-            <span className="relative z-10">{val}</span>
-          </span>
-        ))}
-      </div>
-      <PostList content={content} />
-    </div>
+    <LayoutGroup>
+      <AnimatePresence mode="sync">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, delayChildren: 0.2 }}
+          className="mt-12 mb-4"
+        >
+          <Heading text={"Tags"} />
+          <div className="mb-4">
+            {Object.keys(tagMap).map((val) => (
+              <span
+                className="relative inline-block cursor-pointer py-1 px-2 mr-4 rounded-md bg-code-bg"
+                key={val}
+                onClick={(e) => filterTags(val, e)}
+              >
+                <span
+                  className="absolute inset-0 rounded-md pointer-events-none"
+                  aria-hidden="true"
+                ></span>
+                <span className="relative z-10">#{val}</span>
+              </span>
+            ))}
+          </div>
+          <PostList content={content} />
+        </motion.div>
+      </AnimatePresence>
+    </LayoutGroup>
   );
 };
 

@@ -10,7 +10,7 @@ const PostList = ({ content }) => {
 
   return (
     <LayoutGroup>
-      <div className="space-y-8">
+      <div className="space-y-2">
         <AnimatePresence mode="sync">
           {years.map((year) => (
             <motion.div

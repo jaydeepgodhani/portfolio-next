@@ -1,18 +1,14 @@
-import Horizontal from "./Horizontal";
 import Para from "./Para";
 
 const Block = ({ header, body, footer }) => {
-  return <div>
-    <Para>
-      {header}
-    </Para>
+  return <div className="my-2">
+    <p className="my-5 whitespace-pre-line text-2xl leading-7 animate-fade">{header}</p>
     <Para>
       {body}
     </Para>
     <Para>
       {footer}
     </Para>
-    <Horizontal />
   </div>;
 };
 

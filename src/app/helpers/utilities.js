@@ -139,34 +139,34 @@ export const paragraphs = {
 export const textBlocks = {
   experience: [
     [
-      "SDE III, SDE II (2 years), Intern (6 months)",
-      "Walmart\nJan20 - Present",
+      "SDE III, SDE II (2y), Intern (6m)",
+      "Walmart / Jan20...",
       "Working as Full stack developer as well as Automation Engineer, got Bravo award for exceptional contribution and multiple badges as well.",
     ],
     [
       "Associate Software Engineer",
-      "Accenture (1 year)\nOct15 - Oct16",
+      "Accenture / Oct15 - Oct16",
       "Worked as a Developer, this position involved Data Conversion, Report Generation and Developing Interfaces in Oracle Applications",
     ],
     [
       "Homo Sapien",
-      "Earth (30 year)\nJan94 - Present",
+      "Earth / Jan94...",
       "Living life at fullest. Making mistakes, forming bonds, creating memories along the way.",
     ],
   ],
   corpprojects: [
     [
-      "Service Principal\nNov 21...",
+      "Service Principal / Nov 21...",
       "Service Principal is an identity created for use with applications, hosted services, and automated tools to access Azure resources. We provide a portal and dashboard for application team to directly access service principal without having the deep knowledge of azure portal and even DBA team's intervention which in turn helps both the team to save majority of the time",
       "Tech Stack : Spring Boot, React JS, PostgresDB, Azure Portal, Akeyless",
     ],
     [
-      "Firepass\nJune 21...",
+      "Firepass / June 21...",
       "It is a privileged access management (PAM) system for normal/ emergency time-bound ad-hoc remote access to databases by operational users (privileged, application developers, non-service accounts) to perform certain tasks. It is a mechanism of Authentication and Authorization of user to the database securely and Generates and manages ephemeral database credentials based on Role-Based Ac- cess Controls (RBAC)",
       "Tech Stack : Ansible, Python, Hashicorp Vault, Javascript, Akeyless",
     ],
     [
-      "Migration Automation\nMarch 21 - Aug 21",
+      "Migration Automation / March 21 - Aug 21",
       "Migration Automation aka DMAAS (Database Migration As A Service) is a automation framework around Attunity tool which offers sql to sql migration and related activities to users and thus minimizing interaction between end user and migration team so that migration team can focus on prioritised complex task and this we saved 1500+ working hours",
       "Tech Stack : Ansible, Python, Attunity, HTML, Javascript",
     ],

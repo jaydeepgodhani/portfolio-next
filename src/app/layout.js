@@ -7,8 +7,8 @@ import { Providers } from "./theme-provider";
 export default function DashboardLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-        <body className="w-screen flex bg-bg min-h-screen flex-col items-center">
-      <Providers>
+      <body className="w-screen flex bg-bg min-h-screen flex-col items-center">
+        <Providers>
           <Navbar />
           {/* Layout UI */}
           {/* Place children where you want to render a page or nested layout */}
@@ -24,8 +24,8 @@ export default function DashboardLayout({ children }) {
             </Suspense>
           </div>
           <Footer />
-      </Providers>
-        </body>
+        </Providers>
+      </body>
     </html>
   );
 }
