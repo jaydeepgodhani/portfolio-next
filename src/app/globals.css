@@ -11,44 +11,9 @@
 }
 
 @theme {
-  --color-bg: 253 253 253;
-  --color-primary: 40 37 36;
-  --color-secondary: 74 69 69;
-  --color-link: 255 215 0;
-  --color-link-contrast: 145 0 248;
-  --color-disable: 35 35 35;
-  --color-code-bg: 240 240 240;
-  --color-quote-bg: 249 250 229;
-
   --font-sans: "Quattro", sans-serif;
   --font-body: "Quattro", sans-serif;
   --font-heading: "Recoleta", sans-serif;
-  /* Colors */
-  --color-transparent: transparent;
-  --color-current: currentColor;
-
-  /* Shadows */
-  --shadow-3xl: 0px 0px 20px -4px rgb(var(--color-primary));
-  --shadow-smooth:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12);
-
-  /* Backgrounds */
-  --bg-hr: linear-gradient(
-    to right,
-    rgb(var(--color-bg)),
-    rgb(var(--color-primary)),
-    rgb(var(--color-bg))
-  );
-  --bg-link: linear-gradient(transparent 50%, rgb(var(--color-link)));
-
-  /* Other customizations */
-  --backdrop-blur-xs: 7px;
-  --underline-offset-30: -0.5rem;
 
   /* Animations */
   @keyframes fadeIn {
@@ -64,19 +29,16 @@
   --animate-fade: fadeIn 0.3s ease-in-out forwards;
 }
 
-@theme dark: {
-  --color-bg: 40 40 40;
-  --color-primary: 253 253 253;
-  --color-secondary: 211 211 211;
-  --color-link: 145 0 248;
-  --color-link-contrast: 255 215 0;
-  --color-disable: 200 200 200;
-  --color-code-bg: 51 51 51;
-  --color-quote-bg: 57 45 61;
+:root {
+  --color-bg: 253 253 253;
+  --color-primary: 40 37 36;
+  --color-secondary: 74 69 69;
+  --color-link: 255 215 0;
+  --color-link-contrast: 145 0 248;
+  --color-disable: 35 35 35;
+  --color-code-bg: 240 240 240;
+  --color-quote-bg: 249 250 229;
 
-  --font-sans: "Quattro", sans-serif;
-  --font-body: "Quattro", sans-serif;
-  --font-heading: "Recoleta", sans-serif;
   /* Colors */
   --color-transparent: transparent;
   --color-current: currentColor;
@@ -103,19 +65,36 @@
   /* Other customizations */
   --backdrop-blur-xs: 7px;
   --underline-offset-30: -0.5rem;
+}
 
-  /* Animations */
-  @keyframes fadeIn {
-    0% { opacity: 0 }
-    100% { opacity: 1 }
-  }
+.dark {
+  --color-bg: 40 40 40;
+  --color-primary: 253 253 253;
+  --color-secondary: 211 211 211;
+  --color-link: 145 0 248;
+  --color-link-contrast: 255 215 0;
+  --color-disable: 200 200 200;
+  --color-code-bg: 51 51 51;
+  --color-quote-bg: 57 45 61;
 
-  @keyframes fadeOut {
-    0% { opacity: 1 }
-    100% { opacity: 0 }
-  }
+  /* Shadows */
+  --shadow-3xl: 0px 0px 20px -4px rgb(var(--color-primary));
+  --shadow-smooth:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 
-  --animate-fade: fadeIn 0.3s ease-in-out forwards;
+  /* Backgrounds */
+  --bg-hr: linear-gradient(
+    to right,
+    rgb(var(--color-bg)),
+    rgb(var(--color-primary)),
+    rgb(var(--color-bg))
+  );
+  --bg-link: linear-gradient(transparent 50%, rgb(var(--color-link)));
 }
 
 a.special {
