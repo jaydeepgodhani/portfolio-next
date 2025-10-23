@@ -14,6 +14,25 @@
   --font-sans: "Quattro", sans-serif;
   --font-body: "Quattro", sans-serif;
   --font-heading: "Recoleta", sans-serif;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-bg: "rgb(var(--color-bg))";
+  --color-primary: "rgb(var(--color-primary))";
+  --color-secondary: "rgb(var(--color-secondary))";
+  --color-link: "rgb(var(--color-link))";
+  --color-link-contrast: "rgb(var(--color-link-contrast))";
+  --color-disabled: "rgb(var(--color-disabled))";
+  --color-code-bg: "rgb(var(--color-code-bg))";
+  --color-quote-bg: "rgb(var(--color-quote-bg))";
+  --shadow-3xl: 0px 0px 20px -4px rgb(var(--color-primary));
+  --bg-link: linear-gradient(transparent 50%, rgb(var(--color-link)));
+
+  --bg-hr: linear-gradient(
+    to right,
+    rgb(var(--color-bg)),
+    rgb(var(--color-primary)),
+    rgb(var(--color-bg))
+  );
 
   /* Animations */
   @keyframes fadeIn {
@@ -25,8 +44,11 @@
     0% { opacity: 1 }
     100% { opacity: 0 }
   }
+  /* Other customizations */
+  --backdrop-blur-xs: 7px;
+  --underline-offset-30: -0.5rem;
 
-  --animate-fade: fadeIn 0.3s ease-in-out forwards;
+  --animate-fade: fadeIn 4.3s ease-in-out forwards;
 }
 
 :root {
@@ -38,33 +60,6 @@
   --color-disable: 35 35 35;
   --color-code-bg: 240 240 240;
   --color-quote-bg: 249 250 229;
-
-  /* Colors */
-  --color-transparent: transparent;
-  --color-current: currentColor;
-
-  /* Shadows */
-  --shadow-3xl: 0px 0px 20px -4px rgb(var(--color-primary));
-  --shadow-smooth:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12);
-
-  /* Backgrounds */
-  --bg-hr: linear-gradient(
-    to right,
-    rgb(var(--color-bg)),
-    rgb(var(--color-primary)),
-    rgb(var(--color-bg))
-  );
-  --bg-link: linear-gradient(transparent 50%, rgb(var(--color-link)));
-
-  /* Other customizations */
-  --backdrop-blur-xs: 7px;
-  --underline-offset-30: -0.5rem;
 }
 
 .dark {
@@ -76,25 +71,6 @@
   --color-disable: 200 200 200;
   --color-code-bg: 51 51 51;
   --color-quote-bg: 57 45 61;
-
-  /* Shadows */
-  --shadow-3xl: 0px 0px 20px -4px rgb(var(--color-primary));
-  --shadow-smooth:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12);
-
-  /* Backgrounds */
-  --bg-hr: linear-gradient(
-    to right,
-    rgb(var(--color-bg)),
-    rgb(var(--color-primary)),
-    rgb(var(--color-bg))
-  );
-  --bg-link: linear-gradient(transparent 50%, rgb(var(--color-link)));
 }
 
 a.special {

@@ -10,49 +10,55 @@ const tagMap = getMapOfTags(metadata);
 
 const checkSubset = (parentArray, subsetArray) => {
   return subsetArray.every((el) => {
-      return parentArray.includes(el)
-  })
-}
+    return parentArray.includes(el);
+  });
+};
 
 const Page = () => {
   const [content, setContent] = useState(metadata);
   const [filter, setFilter] = useState([]);
 
-  const filterTags = (e) => {
-    const tagName = e.target.innerHTML;
-    const tagClasses = e.target.classList;
-    if (!filter.includes(tagName)) {
-      tagClasses.add("shadow-3xl");
-      tagClasses.remove("bg-code-bg");
-      setFilter([...filter, tagName]);
+  const filterTags = (value, e) => {
+    const outerSpan = e.currentTarget; // The outer span wrapper
+    const shadowSpan = outerSpan.querySelector("span.absolute"); // Find shadow span inside
+
+    if (!filter.includes(value)) {
+      shadowSpan.classList.add("shadow-3xl", "animate-fade");
+      outerSpan.classList.remove("bg-code-bg");
+      setFilter([...filter, value]);
     } else {
-      tagClasses.remove("shadow-3xl");
-      tagClasses.add("bg-code-bg");
-      setFilter(filter.filter((a) => a != tagName));
+      shadowSpan.classList.remove("shadow-3xl", "animate-fade");
+      outerSpan.classList.add("bg-code-bg");
+      setFilter(filter.filter((a) => a != value));
     }
   };
 
   useEffect(() => {
-    if(filter.length === 0) setContent(metadata);
-    else setContent(
-      metadata.filter((obj) => {
-        if (checkSubset(obj.tags, filter)) return true;
-        else return false;
-      })
-    );
-  }, [filter])
+    if (filter.length === 0) setContent(metadata);
+    else
+      setContent(
+        metadata.filter((obj) => {
+          if (checkSubset(obj.tags, filter)) return true;
+          else return false;
+        })
+      );
+  }, [filter]);
 
   return (
     <div className="animate-fade">
       <h2 className="font-heading text-2xl py-6 text-primary">Tags</h2>
-      <div className="mb-4">
-        {Object.keys(tagMap).map((e) => (
+      <div className="mb-4 text-sm text-secondary">
+        {Object.keys(tagMap).map((val) => (
           <span
-            key={e}
-            className="py-1 px-2 mr-4 rounded-md bg-code-bg text-secondary text-sm cursor-pointer"
-            onClick={filterTags}
+            className="relative inline-block text-secondary text-sm cursor-pointer py-1 px-2 mr-4 rounded-md bg-code-bg"
+            key={val}
+            onClick={e => filterTags(val, e)}
           >
-            {e}
+            <span
+              className="absolute inset-0 rounded-md pointer-events-none"
+              aria-hidden="true"
+            ></span>
+            <span className="relative z-10">{val}</span>
           </span>
         ))}
       </div>
