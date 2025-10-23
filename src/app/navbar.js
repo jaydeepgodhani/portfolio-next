@@ -3,18 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { DARK, LIGHT, showTime, themeSwitcher } from "./helpers/utilities";
+import { showTime } from "./helpers/utilities";
 import ThemeToggle from "./themeToggle";
 
 const Navbar = () => {
   const [time, setTime] = useState(showTime());
   const pathName = usePathname();
-  const toggleTheme = () => {
-    themeSwitcher(localStorage.theme === DARK ? LIGHT : DARK);
-  };
 
   useEffect(() => {
-    themeSwitcher(localStorage.theme);
     const timer = setInterval(() => {
       setTime(showTime());
     }, 20000);
