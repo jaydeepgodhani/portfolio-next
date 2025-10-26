@@ -15,9 +15,28 @@ import Para from "./Para";
 const commonClassName = "text-secondary animate-fade";
 
 const BlogPost = ({ sublink, link }) => {
-
-  const [codeStyle, setCodeStyle] = useState(localStorage.theme === 'dark' ? materialDark : materialLight);
+  const defaultTheme =
+    typeof window !== "undefined"
+      ? localStorage.theme === "dark"
+        ? materialDark
+        : materialLight
+      : materialLight;
+  const [codeStyle, setCodeStyle] = useState(defaultTheme);
   const [content, setContent] = useState(null);
+
+  // ✅ detect theme safely after mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const currentTheme = localStorage.theme === "dark" ? materialDark : materialLight;
+      setCodeStyle(currentTheme);
+      const listener = () => {
+        if (localStorage.theme === DARK) setCodeStyle(materialDark);
+        else setCodeStyle(materialLight);
+      };
+      window.addEventListener("storage", listener);
+      return () => window.removeEventListener("storage", listener);
+    }
+  }, []);
 
   useEffect(() => {
     if (window.location.hash) {
@@ -25,7 +44,7 @@ const BlogPost = ({ sublink, link }) => {
       setTimeout(() => {
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" })
+          el.scrollIntoView({ behavior: "smooth" });
         }
       }, 0);
     }
@@ -45,16 +64,14 @@ const BlogPost = ({ sublink, link }) => {
     fetchFileContent();
   }, [link, sublink]);
 
-  window.addEventListener("storage", () => {
-    if (localStorage.theme === DARK) setCodeStyle(materialDark);
-    else setCodeStyle(materialLight);
-  });
+
 
   const postAvailable = isPostAvailable(sublink, link);
 
   if (!postAvailable) return <NoMatch />;
 
-  if (!content) return <div className="text-primary py-12 text-xl">Loading...</div>
+  if (!content)
+    return <div className="text-primary py-12 text-xl">Loading...</div>;
 
   return (
     <article className="animate-fade">
@@ -74,7 +91,12 @@ const BlogPost = ({ sublink, link }) => {
           ),
           code: (obj) => <CodeBlock obj={obj} codeStyle={codeStyle} />,
           a: ({ href, children }) => (
-            <a href={href} target="_blank" rel="noopener noreferrer" style={{ fontStyle: 'italic', textDecoration: 'underline' }}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontStyle: "italic", textDecoration: "underline" }}
+            >
               {children}
             </a>
           ),
