@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import materialDark from "../helpers/material-dark";
@@ -19,10 +19,15 @@ const BlogPost = ({ sublink, link }) => {
   const [codeStyle, setCodeStyle] = useState(null);
   const [content, setContent] = useState(null);
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!resolvedTheme) return;
-    setCodeStyle(resolvedTheme === "dark" ? materialDark : materialLight);
+    const style = resolvedTheme === "dark" ? materialDark : materialLight;
+    const timeout = setTimeout(() => setCodeStyle(style), 150); // small delay
+    return () => clearTimeout(timeout);
   }, [resolvedTheme]);
 
   useEffect(() => {
@@ -51,15 +56,9 @@ const BlogPost = ({ sublink, link }) => {
     fetchFileContent();
   }, [link, sublink]);
 
-  const postAvailable = isPostAvailable(sublink, link);
-
-  if (!postAvailable) return <NoMatch />;
-
-  if (!content)
-    return <div className="text-primary py-12 text-xl">Loading...</div>;
-
-  return (
-    <article className="animate-fade py-6">
+  const markdownRender = useMemo(() => {
+    if (!content) return null;
+    return (
       <ReactMarkdown
         key={sublink}
         remarkPlugins={[remarkGfm]}
@@ -74,10 +73,8 @@ const BlogPost = ({ sublink, link }) => {
               {children}
             </blockquote>
           ),
-          pre: (obj) => <CodeBlock obj={obj} codeStyle={codeStyle} />,
-          code: ({ children }) => (
-            <b className={commonClassName}>{children}</b>
-          ),
+          pre: (obj) => <CodeBlock obj={obj} />,
+          code: ({ children }) => <b className={commonClassName}>{children}</b>,
           a: ({ href, children }) => (
             <a
               href={href}
@@ -135,6 +132,19 @@ const BlogPost = ({ sublink, link }) => {
       >
         {content}
       </ReactMarkdown>
+    );
+  }, [content, sublink]);
+
+  const postAvailable = isPostAvailable(sublink, link);
+
+  if (!postAvailable) return <NoMatch />;
+
+  if (!content || !mounted)
+    return <div className="text-primary py-12 text-xl">Loading...</div>;
+
+  return (
+    <article className="transition-opacity duration-300 opacity-100 animate-fade mt-12">
+      {markdownRender}
     </article>
   );
 };

@@ -109,8 +109,29 @@ html {
   font-family: var(--font-body);
   overscroll-behavior: none;
   overflow: scroll;
+  color-scheme: light dark;
 }
 
 html.transition-none * {
   transition: none !important;
+}
+
+html,
+body,
+code,
+pre,
+blockquote,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+pre,
+code {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

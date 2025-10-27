@@ -17,7 +17,7 @@ export default function ThemeToggle() {
   return (
     <button
       onMouseDown={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="w-auto h-full flex items-center justify-center cursor-pointer mx-3 text-3xl"
+      className="w-auto h-full flex items-center justify-center cursor-pointer pl-3 text-3xl"
     >
       {/* <svg className="h-6 w-full m-2 text-primary" viewBox="0 0 24 24">
                 <desc>Theme Switcher Icon</desc>
