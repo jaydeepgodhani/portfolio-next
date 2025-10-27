@@ -21,11 +21,11 @@ const Navbar = () => {
   return (
     <div className="w-screen sticky top-0 backdrop-opacity-97 backdrop-blur-[5px] z-10 bg-bg/40">
       <div className="flex items-center flex-row justify-center">
-        <div></div>
-        <div className="2xl:w-1/2 lg:w-3/4 py-[12px] px-4">
+
+        <div className="w-6/12 py-[12px] px-4">
           <nav>
-            <ul className="w-full flex flex-col text-xl items-center lg:flex-row font-bold">
-              <li className="lg:w-[50%] xl:w-[60%] 2xl:w-[50%]">
+            <ul className="w-full flex flex-col text-xl items-center lg:flex-row justify-between">
+              <li className="">
                 <Link
                   href="/"
                   className="border-b-0 no-underline shadow-none hover:shadow-none text-primary"
@@ -33,7 +33,7 @@ const Navbar = () => {
                   {time}
                 </Link>
               </li>
-              <div className="flex flex-row w-full mt-3 justify-center lg:mt-0 lg:w-[50%] xl:w-[40%] 2xl:w-[50%]">
+              <div className="flex flex-row mt-3 justify-center lg:mt-0 ">
                 <li className="mx-4">
                   <Link
                     href="/projects"

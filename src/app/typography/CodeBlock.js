@@ -4,19 +4,21 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 const CodeBlock = ({ obj, codeStyle }) => {
   const [copied, setCopied] = useState(false);
   const { children, className, ...rest } = obj;
-  const match = /language-(\w+)/.exec(className || "");
-  const content = String(children).replace(/\n$/, "");
+  const codeNode = Array.isArray(children) ? children[0] : children;
+  const language =
+    /language-(\w+)/.exec(codeNode?.props?.className || "")?.[1] ?? "plaintext";
+
+  const content = String(codeNode?.props?.children || "")
+    .trim()
+    .replace(/\n$/, "");
+
   const handleCopy = async () => {
     await navigator.clipboard.writeText(content);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return !className ? (
-    <code className="py-1 px-2 rounded-md bg-code-bg text-secondary text-sm break-all wrap-break-word whitespace-pre animate-fade">
-      {children}
-    </code>
-  ) : match ? (
+  return (
     <div className="relative animate-fade">
       <button
         className="absolute top-2 right-2 p-1 text-secondary rounded hover:pointer z-[2]"
@@ -57,15 +59,11 @@ const CodeBlock = ({ obj, codeStyle }) => {
         key={localStorage.theme + "documentId"}
         PreTag="div"
         className="py-4 px-4 rounded-md bg-code-bg text-secondary text-sm break-all wrap-break-word whitespace-pre-wrap animate-fade"
-        language={match[1]}
+        language={language}
         style={codeStyle}
       >
         {content}
       </SyntaxHighlighter>
-    </div>
-  ) : (
-    <div className="py-1 px-2 rounded-md bg-code-bg text-secondary text-sm break-all wrap-break-word whitespace-pre">
-      {content}
     </div>
   );
 };

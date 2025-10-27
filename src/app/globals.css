@@ -3,11 +3,22 @@
 @font-face {
   font-family: "Quattro";
   src: url("/fonts/quattro.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quattro";
+  src: url("/fonts/quattro-bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
   font-family: "Recoleta";
   src: url("/fonts/recoleta-bold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @theme {
@@ -98,4 +109,8 @@ html {
   font-family: var(--font-body);
   overscroll-behavior: none;
   overflow: scroll;
+}
+
+html.transition-none * {
+  transition: none !important;
 }

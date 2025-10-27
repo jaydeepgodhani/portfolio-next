@@ -7,7 +7,8 @@ import materialDark from "../helpers/material-dark";
 import materialLight from "../helpers/material-light";
 import NoMatch from "../not-found";
 // import { a11yOneLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { DARK, isPostAvailable } from "../helpers/utilities";
+import { useTheme } from "next-themes";
+import { isPostAvailable } from "../helpers/utilities";
 import CodeBlock from "./CodeBlock";
 import Header from "./Header";
 import Para from "./Para";
@@ -15,28 +16,14 @@ import Para from "./Para";
 const commonClassName = "text-secondary animate-fade";
 
 const BlogPost = ({ sublink, link }) => {
-  const defaultTheme =
-    typeof window !== "undefined"
-      ? localStorage.theme === "dark"
-        ? materialDark
-        : materialLight
-      : materialLight;
-  const [codeStyle, setCodeStyle] = useState(defaultTheme);
+  const [codeStyle, setCodeStyle] = useState(null);
   const [content, setContent] = useState(null);
+  const { resolvedTheme } = useTheme();
 
-  // ✅ detect theme safely after mount
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const currentTheme = localStorage.theme === "dark" ? materialDark : materialLight;
-      setCodeStyle(currentTheme);
-      const listener = () => {
-        if (localStorage.theme === DARK) setCodeStyle(materialDark);
-        else setCodeStyle(materialLight);
-      };
-      window.addEventListener("storage", listener);
-      return () => window.removeEventListener("storage", listener);
-    }
-  }, []);
+    if (!resolvedTheme) return;
+    setCodeStyle(resolvedTheme === "dark" ? materialDark : materialLight);
+  }, [resolvedTheme]);
 
   useEffect(() => {
     if (window.location.hash) {
@@ -64,8 +51,6 @@ const BlogPost = ({ sublink, link }) => {
     fetchFileContent();
   }, [link, sublink]);
 
-
-
   const postAvailable = isPostAvailable(sublink, link);
 
   if (!postAvailable) return <NoMatch />;
@@ -74,7 +59,7 @@ const BlogPost = ({ sublink, link }) => {
     return <div className="text-primary py-12 text-xl">Loading...</div>;
 
   return (
-    <article className="animate-fade">
+    <article className="animate-fade py-6">
       <ReactMarkdown
         key={sublink}
         remarkPlugins={[remarkGfm]}
@@ -85,11 +70,14 @@ const BlogPost = ({ sublink, link }) => {
           h4: ({ children }) => <Header content={children} size="xl" />,
           p: ({ children }) => <Para>{children}</Para>,
           blockquote: ({ children }) => (
-            <blockquote className="pl-4 border-l-4 bg-quote-bg border-primary py-1 my-1 animate-fade">
+            <blockquote className="pl-4 border-l-4 bg-quote-bg border-primary my-1 animate-fade">
               {children}
             </blockquote>
           ),
-          code: (obj) => <CodeBlock obj={obj} codeStyle={codeStyle} />,
+          pre: (obj) => <CodeBlock obj={obj} codeStyle={codeStyle} />,
+          code: ({ children }) => (
+            <b className={commonClassName}>{children}</b>
+          ),
           a: ({ href, children }) => (
             <a
               href={href}

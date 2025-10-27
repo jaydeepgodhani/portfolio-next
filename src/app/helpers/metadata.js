@@ -58,4 +58,8 @@ export const knowledgeDocs = [
     title: "NodeJS 101",
     link: "node-doc",
   },
+  {
+    title: "Test Doc",
+    link: "test-doc",
+  },
 ];
